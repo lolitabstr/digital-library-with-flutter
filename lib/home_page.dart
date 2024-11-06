@@ -4,6 +4,8 @@ import 'insert.dart';
 import 'update.dart';
 
 class BookListPage extends StatefulWidget {
+  const BookListPage({super.key});
+
   @override
   _BookListPageState createState() => _BookListPageState();
 }
@@ -24,15 +26,10 @@ class _BookListPageState extends State<BookListPage> {
         .from('books')
         .select();
 
-    if (response != null) {
-      setState(() {
-        books = List<Map<String, dynamic>>.from(response);
-      });
-    } else {
-      // Tampilkan error jika ada
-      print('Error fetching books: ${response}');
+    setState(() {
+      books = List<Map<String, dynamic>>.from(response);
+    });
     }
-  }
 
   // Fungsi untuk menghapus buku dari Supabase
   Future<void> deleteBook(int id) async {
@@ -47,7 +44,7 @@ class _BookListPageState extends State<BookListPage> {
         books.removeWhere((book) => book['id'] == id);
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Book deleted successfully!')),
+        const SnackBar(content: Text('Book deleted successfully!')),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -60,16 +57,16 @@ class _BookListPageState extends State<BookListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Buku'),
+        title: const Text('Daftar Buku'),
         actions: [
           IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: fetchBooks, // Tombol untuk refresh data
           ),
         ],
       ),
       body: books.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: books.length,
               itemBuilder: (context, index) {
@@ -82,7 +79,7 @@ class _BookListPageState extends State<BookListPage> {
                     children: [
                       // Tombol edit
                       IconButton(
-                        icon: Icon(Icons.edit, color: Colors.blue),
+                        icon: const Icon(Icons.edit, color: Colors.blue),
                         onPressed: () {
                           // Arahkan ke halaman EditBookPage dengan mengirimkan data buku
                           Navigator.push(
@@ -97,28 +94,28 @@ class _BookListPageState extends State<BookListPage> {
                       ),
                       // Tombol delete
                       IconButton(
-                        icon: Icon(Icons.delete, color: Colors.red),
+                        icon: const Icon(Icons.delete, color: Colors.red),
                         onPressed: () {
                           // Konfirmasi sebelum menghapus buku
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Delete Book'),
-                                content: Text('Are you sure you want to delete this book?'),
+                                title: const Text('Delete Book'),
+                                content: const Text('Are you sure you want to delete this book?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('Cancel'),
+                                    child: const Text('Cancel'),
                                   ),
                                   TextButton(
                                     onPressed: () async {
                                       await deleteBook(book['id']);
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('Delete'),
+                                    child: const Text('Delete'),
                                   ),
                                 ],
                               );
@@ -135,10 +132,10 @@ class _BookListPageState extends State<BookListPage> {
             onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AddBookPage()),
+                    MaterialPageRoute(builder: (context) => const AddBookPage()),
                 );
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
         ),
     );
   }

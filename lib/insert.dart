@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AddBookPage extends StatefulWidget {
+  const AddBookPage({super.key});
+
   @override
   _AddBookPageState createState() => _AddBookPageState();
 }
@@ -42,7 +44,7 @@ class _AddBookPageState extends State<AddBookPage> {
     } else {
       // Jika sukses, tampilkan pesan dan kosongkan form
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Book added successfully!')),
+        const SnackBar(content: Text('Book added successfully!')),
       );
       _titleController.clear();
       _authorController.clear();
@@ -54,7 +56,7 @@ class _AddBookPageState extends State<AddBookPage> {
       // Refresh daftar buku
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => BookListPage()),
+        MaterialPageRoute(builder: (context) => const BookListPage()),
       );
     }
   }
@@ -63,7 +65,7 @@ class _AddBookPageState extends State<AddBookPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add New Book'),
+        title: const Text('Add New Book'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -73,7 +75,7 @@ class _AddBookPageState extends State<AddBookPage> {
             children: [
               TextFormField(
                 controller: _titleController,
-                decoration: InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the title';
@@ -83,7 +85,7 @@ class _AddBookPageState extends State<AddBookPage> {
               ),
               TextFormField(
                 controller: _authorController,
-                decoration: InputDecoration(labelText: 'Author'),
+                decoration: const InputDecoration(labelText: 'Author'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the author';
@@ -93,7 +95,7 @@ class _AddBookPageState extends State<AddBookPage> {
               ),
               TextFormField(
                 controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the description';
@@ -101,10 +103,10 @@ class _AddBookPageState extends State<AddBookPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _addBook,
-                child: Text('Add Book'),
+                child: const Text('Add Book'),
               ),
             ],
           ),

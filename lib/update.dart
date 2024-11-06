@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class EditBookPage extends StatefulWidget {
   final Map<String, dynamic> book;
 
-  EditBookPage({required this.book});
+  const EditBookPage({super.key, required this.book});
 
   @override
   _EditBookPageState createState() => _EditBookPageState();
@@ -48,7 +48,7 @@ class _EditBookPageState extends State<EditBookPage> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Book updated successfully!')),
+        const SnackBar(content: Text('Book updated successfully!')),
       );
       Navigator.pop(context, true); // Kembali ke halaman home dan beri tahu ada perubahan
     }
@@ -57,7 +57,7 @@ class _EditBookPageState extends State<EditBookPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Book')),
+      appBar: AppBar(title: const Text('Edit Book')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -66,7 +66,7 @@ class _EditBookPageState extends State<EditBookPage> {
             children: [
               TextFormField(
                 controller: _titleController,
-                decoration: InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a title';
@@ -76,7 +76,7 @@ class _EditBookPageState extends State<EditBookPage> {
               ),
               TextFormField(
                 controller: _authorController,
-                decoration: InputDecoration(labelText: 'Author'),
+                decoration: const InputDecoration(labelText: 'Author'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an author';
@@ -86,7 +86,7 @@ class _EditBookPageState extends State<EditBookPage> {
               ),
               TextFormField(
                 controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a description';
@@ -94,10 +94,10 @@ class _EditBookPageState extends State<EditBookPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                   onPressed: _updateBook,
-                  child: Text('Update Book'),
+                  child: const Text('Update Book'),
                 ),
             ],
           ),
