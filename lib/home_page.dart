@@ -48,7 +48,7 @@ class _BookListPageState extends State<BookListPage> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${response}')),
+        SnackBar(content: Text('Error: $response')),
       );
     }
   }
@@ -72,8 +72,23 @@ class _BookListPageState extends State<BookListPage> {
               itemBuilder: (context, index) {
                 final book = books[index];
                 return ListTile(
-                  title: Text(book['title'] ?? 'No Title'),
-                  subtitle: Text(book['description'] ?? 'No Description'),
+                  // Menampilkan gambar di sisi kiri ListTile
+                  leading: book['ava'] != null 
+                  ? Image.network(
+                    book['ava'], // URL gambar dari Supabase
+                    width: 50,        // Lebar gambar
+                    height: 50,       // Tinggi gambar
+                    fit: BoxFit.cover, // Menjaga agar gambar sesuai dalam kotak
+                  )
+                  : const Icon(Icons.book, size: 50), // Ikon default jika URL gambar kosong
+                  title: Text(book['title'] ?? 'No Title', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(book['author'] ?? 'No Author', style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+                      Text(book['description'] ?? 'No Description', style: const TextStyle(fontSize: 12)),
+                    ],
+                  ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
