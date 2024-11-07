@@ -48,7 +48,7 @@ class _BookListPageState extends State<BookListPage> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${response.error!.message}')),
+        SnackBar(content: Text('Error: ${response}')),
       );
     }
   }
@@ -66,7 +66,7 @@ class _BookListPageState extends State<BookListPage> {
         ],
       ),
       body: books.isEmpty
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator()) // CirucularProgressIndicator adalah widget untuk menampilkan loading indikator
           : ListView.builder(
               itemCount: books.length,
               itemBuilder: (context, index) {
@@ -128,14 +128,14 @@ class _BookListPageState extends State<BookListPage> {
                 );
               },
             ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AddBookPage()),
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddBookPage()),
                 );
-            },
-            child: const Icon(Icons.add),
+              },
+              child: const Icon(Icons.add),
         ),
     );
   }
