@@ -29,7 +29,7 @@ class _BookListPageState extends State<BookListPage> {
     setState(() {
       books = List<Map<String, dynamic>>.from(response);
     });
-    }
+  }
 
   // Fungsi untuk menghapus buku dari Supabase
   Future<void> deleteBook(int id) async {
@@ -58,6 +58,7 @@ class _BookListPageState extends State<BookListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Buku'),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -73,14 +74,14 @@ class _BookListPageState extends State<BookListPage> {
                 final book = books[index];
                 return ListTile(
                   // Menampilkan gambar di sisi kiri ListTile
-                  leading: book['ava'] != null 
-                  ? Image.network(
-                    book['ava'], // URL gambar dari Supabase
-                    width: 50,        // Lebar gambar
-                    height: 50,       // Tinggi gambar
-                    fit: BoxFit.cover, // Menjaga agar gambar sesuai dalam kotak
-                  )
-                  : const Icon(Icons.book, size: 50), // Ikon default jika URL gambar kosong
+                  // leading: book['ava'] != null 
+                  // ? Image.network(
+                  //   book['ava'], // URL gambar dari Supabase
+                  //   width: 50,        // Lebar gambar
+                  //   height: 50,       // Tinggi gambar
+                  //   fit: BoxFit.cover, // Menjaga agar gambar sesuai dalam kotak
+                  // )
+                  // : const Icon(Icons.book, size: 50), // Ikon default jika URL gambar kosong
                   title: Text(book['title'] ?? 'No Title', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

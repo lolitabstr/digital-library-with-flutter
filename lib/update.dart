@@ -44,6 +44,7 @@ class _EditBookPageState extends State<EditBookPage> {
 
     if (response != null) {
       ScaffoldMessenger.of(context).showSnackBar(
+        // ignore: unnecessary_brace_in_string_interps
         SnackBar(content: Text('Error: ${response}')),
       );
     } else {
